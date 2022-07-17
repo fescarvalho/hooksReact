@@ -18,11 +18,12 @@ const HookUseReducer = () => {
           id: Math.random(),
           text: taskText,
         }
-
         setTaskText('')
         return [...state, newTask]
+
       case 'DELETE':
         return state.filter((task) => task.id !== action.id)
+
       default:
         return [...state]
     }
@@ -34,7 +35,6 @@ const HookUseReducer = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     dispatchTasks({ type: 'ADD' })
-    localStorage.setItem('task')
   }
 
   const removeTask = (id) => {
@@ -47,6 +47,7 @@ const HookUseReducer = () => {
       <h1>useReducer</h1>
       <button onClick={dispatch}>Sorteie</button>
       <p>O numero sorteado é: {number}</p>
+
       {/* 2-useReducer e actions */}
 
       <form action="" onSubmit={handleSubmit}>
