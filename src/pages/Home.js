@@ -8,6 +8,7 @@ import { useContext } from 'react'
 import { SomeContext } from '../components/HookUseContext'
 import CounterClick from '../components/CounterClick'
 import DoubleCounterClick from '../components/DoubleCounterClick'
+import HookUseRef from '../components/HookUseRef'
 
 const Home = () => {
   const { contextValue } = useContext(SomeContext)
@@ -26,6 +27,7 @@ const Home = () => {
       <CounterClick />
       <DoubleCounterClick />
       <hr />
+      <HookUseRef />
     </>
   )
 }
