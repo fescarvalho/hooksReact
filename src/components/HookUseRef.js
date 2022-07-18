@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
+import FakeModal from './FakeModal'
 
 const HookUseRef = () => {
   /*1- UseRef */
@@ -20,6 +21,14 @@ const HookUseRef = () => {
     inputRef.current.focus()
   }
 
+  /* 3- UseRef e inputs Modal entre componentes*/
+  const [showModal, setShowModal] = useState(false)
+  const modalRef = useRef()
+
+  function ShowFakeModal() {
+    setShowModal(true)
+  }
+
   return (
     <div>
       {/* 1-UseRef */}
@@ -31,6 +40,7 @@ const HookUseRef = () => {
       <button onClick={() => setNumberB(numberB + 1)}>Add</button>
       <br />
       <br />
+
       {/* 2- UseRef e inputs */}
       <form onSubmit={handleSubmit}>
         <input
@@ -40,7 +50,19 @@ const HookUseRef = () => {
           ref={inputRef}
         />
         <input type="submit" value="Enviar" />
+        <br />
+        <br />
       </form>
+
+      {/* 3- UseRef e inputs Modal entre componentes*/}
+      <div>
+        <button onClick={ShowFakeModal}>Clique aqui para exibir modal</button>
+
+        {showModal && <FakeModal forwardedRef={modalRef} />}
+      </div>
+
+      <br />
+      <br />
     </div>
   )
 }
