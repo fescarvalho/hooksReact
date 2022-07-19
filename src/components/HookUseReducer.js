@@ -6,10 +6,10 @@ const HookUseReducer = () => {
   })
 
   /* 2-useReducer e actions*/
-  const initialTasks = [
-    { id: 0, text: 'Fazer Cafe' },
-    { id: 1, text: 'Fazer Xixi' },
-  ]
+  /*  const initialTasks = [{ id: 0, text: 'cafe' }] */
+  const initialTasks = JSON.parse(localStorage.getItem('tasks')) || []
+  /* 
+  initialTasks =  */
 
   const listTask = (state, action) => {
     switch (action.type) {
@@ -18,7 +18,9 @@ const HookUseReducer = () => {
           id: Math.random(),
           text: taskText,
         }
-        setTaskText('')
+
+        saveLocalStorage(newTask)
+
         return [...state, newTask]
 
       case 'DELETE':
@@ -32,13 +34,21 @@ const HookUseReducer = () => {
   const [taskText, setTaskText] = useState('')
   const [tasks, dispatchTasks] = useReducer(listTask, initialTasks)
 
+  function saveLocalStorage(task) {
+    initialTasks.push(task)
+    setTaskText('')
+    localStorage.setItem('tasks', JSON.stringify(initialTasks))
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault()
+
     dispatchTasks({ type: 'ADD' })
   }
 
   const removeTask = (id) => {
     dispatchTasks({ type: 'DELETE', id })
+    localStorage.removeItem('task', id)
   }
 
   return (
