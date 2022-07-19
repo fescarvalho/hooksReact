@@ -7,7 +7,9 @@ const HookUseReducer = () => {
 
   /* 2-useReducer e actions*/
   /*  const initialTasks = [{ id: 0, text: 'cafe' }] */
+
   const initialTasks = JSON.parse(localStorage.getItem('tasks')) || []
+
   /* 
   initialTasks =  */
 
@@ -34,6 +36,11 @@ const HookUseReducer = () => {
   const [taskText, setTaskText] = useState('')
   const [tasks, dispatchTasks] = useReducer(listTask, initialTasks)
 
+  function deleteLocalStorages(id) {
+    const filter = initialTasks.filter((task) => task.id !== id)
+    localStorage.setItem('tasks', JSON.stringify(filter))
+  }
+
   function saveLocalStorage(task) {
     initialTasks.push(task)
     setTaskText('')
@@ -42,13 +49,12 @@ const HookUseReducer = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-
     dispatchTasks({ type: 'ADD' })
   }
 
   const removeTask = (id) => {
     dispatchTasks({ type: 'DELETE', id })
-    localStorage.removeItem('task', id)
+    deleteLocalStorages(id)
   }
 
   return (
@@ -61,7 +67,9 @@ const HookUseReducer = () => {
       {/* 2-useReducer e actions */}
 
       <form action="" onSubmit={handleSubmit}>
+        <label htmlFor="task">Insira uma task: </label>
         <input
+          id="task"
           type="text"
           onChange={(e) => setTaskText(e.target.value)}
           value={taskText}
