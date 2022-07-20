@@ -44,9 +44,12 @@ const HooksUseEffect = () => {
       <p>O numero é: {number}</p>
       <button onClick={nextNumber}>Clique</button>
       <br />
+      <p>Veja o console</p>
+
       <h4>UseEffect com dependencias</h4>
       <p>O numero e: {anotherNumber}</p>
       <button onClick={addAnotherNumber}>Clique</button>
+      <p>Veja o console</p>
       <hr />
     </div>
   )
