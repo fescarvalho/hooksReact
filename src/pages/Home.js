@@ -10,6 +10,7 @@ import CounterClick from '../components/CounterClick'
 import DoubleCounterClick from '../components/DoubleCounterClick'
 import HookUseRef from '../components/HookUseRef'
 import HookUseCallback from '../components/HookUseCallback'
+import HookUseMemo from '../components/HookUseMemo'
 
 const Home = () => {
   const { contextValue } = useContext(SomeContext)
@@ -31,6 +32,8 @@ const Home = () => {
       <HookUseRef />
       <hr />
       <HookUseCallback />
+      <hr />
+      <HookUseMemo />
     </>
   )
 }
